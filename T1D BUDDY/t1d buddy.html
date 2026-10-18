@@ -1,0 +1,703 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#087f8c">
+<meta name="description" content="T1D Buddy - English and Tamil Type 1 diabetes companion">
+<title>T1D Buddy</title>
+<link rel="manifest" href="./manifest.json">
+<link rel="apple-touch-icon" href="./icons/icon-192.png">
+
+<style>
+:root {
+  --bg: #f0f8fa;
+  --card: #ffffff;
+  --text: #16343a;
+  --primary: #087f8c;
+  --border: #d5e7e9;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.6 Arial, sans-serif;
+}
+body.dark {
+  --bg: #102328;
+  --card: #1b343a;
+  --text: #f0ffff;
+  --border: #38545a;
+}
+header {
+  background: linear-gradient(135deg,#087f8c,#13aaa3);
+  color: white;
+  padding: 25px 18px;
+  text-align: center;
+}
+header h1 { margin: 0; font-size: 34px; }
+nav {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  overflow-x: auto;
+  background: var(--card);
+  position: sticky;
+  top: 0;
+}
+nav a {
+  white-space: nowrap;
+  text-decoration: none;
+  color: var(--text);
+  padding: 8px;
+}
+main { max-width: 1050px; margin: auto; padding: 16px; }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 17px;
+  padding: 20px;
+  margin-bottom: 17px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+  gap: 13px;
+}
+button {
+  background: var(--primary);
+  color: white;
+  border: 0;
+  padding: 12px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+}
+.secondary { background: #dff2f3; color: #123d43; }
+input,select,textarea {
+  display: block;
+  width: 100%;
+  padding: 11px;
+  margin: 6px 0 13px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+}
+label { font-weight: bold; }
+.install-card {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 15px;
+}
+.muted { opacity: .8; font-size: .92em; }
+.notice {
+  background: #fff4d8;
+  color: #503c10;
+  padding: 12px;
+  border-radius: 10px;
+}
+.check { margin: 10px 0; }
+.check input { display: inline; width: auto; }
+footer { text-align: center; padding: 25px; }
+@media print {
+  header, nav, button, .no-print { display: none !important; }
+  body { background: white; color: black; }
+  .card { border: 0; }
+}
+</style>
+</head>
+
+<body>
+<header>
+  <h1>💙 T1D Buddy</h1>
+  <p id="tagline">Learn. Prepare. Feel supported.</p>
+  <button class="secondary" onclick="toggleLanguage()">தமிழ் / English</button>
+  <button class="secondary" onclick="toggleTheme()">🌙 Dark mode</button>
+  <button class="secondary" onclick="toggleText()">A+</button>
+</header>
+
+<nav>
+  <a href="#home" data-en="Home" data-ta="முகப்பு">Home</a>
+  <a href="#install" data-en="Install App" data-ta="செயலி நிறுவு">Install App</a>
+  <a href="#daily" data-en="Daily Report" data-ta="தினசரி பதிவு">Daily Report</a>
+  <a href="#learn" data-en="Learn" data-ta="கற்றுக்கொள்">Learn</a>
+  <a href="#travel" data-en="Travel" data-ta="பயணம்">Travel</a>
+  <a href="#quiz" data-en="Quiz" data-ta="வினாடி வினா">Quiz</a>
+  <a href="#emergency" data-en="Emergency Card" data-ta="அவசர அட்டை">Emergency Card</a>
+  <a href="#settings" data-en="Settings" data-ta="அமைப்புகள்">Settings</a>
+</nav>
+
+<main>
+<section class="card" id="home">
+  <h2 data-en="Your Type 1 Diabetes Companion"
+      data-ta="உங்கள் வகை 1 நீரிழிவு துணை">
+    Your Type 1 Diabetes Companion
+  </h2>
+  <p data-en="Learn about T1D, organise your information and prepare for everyday life."
+     data-ta="T1D பற்றி கற்றுக்கொண்டு, தகவல்களை ஒழுங்குபடுத்தி, அன்றாட வாழ்க்கைக்குத் தயாராகுங்கள்.">
+    Learn about T1D, organise your information and prepare for everyday life.
+  </p>
+  <div class="notice"
+       data-en="This website is educational, not medical advice. Follow your diabetes care team's instructions. Never change insulin doses based on this website."
+       data-ta="இது கல்விக்கான இணையதளம்; மருத்துவ ஆலோசனை அல்ல. உங்கள் மருத்துவக் குழுவின் வழிமுறைகளைப் பின்பற்றுங்கள். இதை வைத்து இன்சுலின் அளவை மாற்ற வேண்டாம்.">
+    This website is educational, not medical advice. Follow your diabetes care team's instructions. Never change insulin doses based on this website.
+  </div>
+</section>
+
+<section class="card" id="install">
+  <h2 data-en="Install T1D Buddy on your device"
+      data-ta="உங்கள் சாதனத்தில் T1D Buddy-ஐ நிறுவுங்கள்">
+    Install T1D Buddy on your device
+  </h2>
+  <p data-en="Choose your device below."
+     data-ta="கீழே உங்கள் சாதனத்தைத் தேர்ந்தெடுக்கவும்.">
+    Choose your device below.
+  </p>
+
+  <div class="grid">
+    <div class="install-card">
+      <h3>📱 Android</h3>
+      <p>Chrome</p>
+      <button onclick="installFor('android')"
+        data-en="Install for Android" data-ta="ஆண்ட்ராய்டில் நிறுவு">
+        Install for Android
+      </button>
+      <p class="muted"
+        data-en="If no prompt appears, open Chrome's menu and choose Install app or Add to Home screen."
+        data-ta="அறிவிப்பு வராவிட்டால் Chrome மெனுவில் Install app அல்லது Add to Home screen என்பதைத் தேர்ந்தெடுக்கவும்.">
+        If no prompt appears, open Chrome's menu and choose Install app or Add to Home screen.
+      </p>
+    </div>
+
+    <div class="install-card">
+      <h3>📱 iPhone</h3>
+      <p>Safari</p>
+      <button onclick="installFor('iphone')"
+        data-en="Install for iPhone" data-ta="ஐபோனில் நிறுவு">
+        Install for iPhone
+      </button>
+      <p class="muted"
+        data-en="In Safari, tap Share, Add to Home Screen, then Add."
+        data-ta="Safari-யில் Share, Add to Home Screen, பின்னர் Add என்பதைத் தேர்ந்தெடுக்கவும்.">
+        In Safari, tap Share, Add to Home Screen, then Add.
+      </p>
+    </div>
+
+    <div class="install-card">
+      <h3>🖥️ Windows</h3>
+      <p>Chrome or Edge</p>
+      <button onclick="installFor('windows')"
+        data-en="Install for Windows" data-ta="விண்டோஸில் நிறுவு">
+        Install for Windows
+      </button>
+      <p class="muted"
+        data-en="Look for the install icon beside the address bar or in the browser menu."
+        data-ta="முகவரிப் பட்டியின் அருகில் அல்லது உலாவி மெனுவில் நிறுவல் குறியீட்டைத் தேடுங்கள்.">
+        Look for the install icon beside the address bar or in the browser menu.
+      </p>
+    </div>
+
+    <div class="install-card">
+      <h3>💻 MacBook</h3>
+      <p>Safari or Chrome</p>
+      <button onclick="installFor('mac')"
+        data-en="Install for MacBook" data-ta="மேக்புக்கில் நிறுவு">
+        Install for MacBook
+      </button>
+      <p class="muted"
+        data-en="On supported Safari versions, choose File → Add to Dock. Chrome may offer Install app."
+        data-ta="ஆதரிக்கப்படும் Safari பதிப்புகளில் File → Add to Dock என்பதைத் தேர்ந்தெடுக்கவும். Chrome-ல் Install app இருக்கலாம்.">
+        On supported Safari versions, choose File → Add to Dock. Chrome may offer Install app.
+      </p>
+    </div>
+  </div>
+  <p class="muted">Installation requires the published website to use HTTPS. Your browser controls whether installation is available.</p>
+</section>
+
+<section class="card" id="daily">
+  <h2 data-en="Daily glucose and insulin report"
+      data-ta="தினசரி குளுக்கோஸ் மற்றும் இன்சுலின் பதிவு">
+    Daily glucose and insulin report
+  </h2>
+  <label for="reportDate" data-en="Date" data-ta="தேதி">Date</label>
+  <input id="reportDate" type="date">
+
+  <label for="unit" data-en="Glucose unit" data-ta="குளுக்கோஸ் அலகு">Glucose unit</label>
+  <select id="unit">
+    <option>mg/dL</option>
+    <option>mmol/L</option>
+  </select>
+
+  <div id="dailySlots"></div>
+
+  <label for="note" data-en="Additional note" data-ta="கூடுதல் குறிப்பு">Additional note</label>
+  <textarea id="note"></textarea>
+
+  <label for="whatsapp" data-en="Doctor or caregiver WhatsApp number (with country code)"
+      data-ta="மருத்துவர் அல்லது பராமரிப்பாளரின் WhatsApp எண் (நாட்டுக் குறியீட்டுடன்)">
+    Doctor or caregiver WhatsApp number (with country code)
+  </label>
+  <input id="whatsapp" placeholder="Example: 919876543210" inputmode="tel">
+
+  <button onclick="createReport()" data-en="Prepare report" data-ta="அறிக்கை தயார் செய்">Prepare report</button>
+  <button onclick="shareReport()" data-en="Review and share on WhatsApp" data-ta="சரிபார்த்து WhatsApp-ல் பகிர்">Review and share on WhatsApp</button>
+
+  <label for="reportOutput" data-en="Report preview" data-ta="அறிக்கை முன்னோட்டம்">Report preview</label>
+  <textarea id="reportOutput" rows="9"></textarea>
+  <p class="muted" data-en="Review all details before sending. If a reading is low or high, include its context. This app does not recommend treatment or insulin doses."
+     data-ta="அனுப்புவதற்கு முன் எல்லா விவரங்களையும் சரிபார்க்கவும். அளவு குறைவாகவோ அதிகமாகவோ இருந்தால் அதன் சூழலைச் சேர்க்கவும். இந்தச் செயலி சிகிச்சையையோ இன்சுலின் அளவையோ பரிந்துரைக்காது.">
+    Review all details before sending. If a reading is low or high, include its context. This app does not recommend treatment or insulin doses.
+  </p>
+</section>
+
+<section class="card" id="learn">
+  <h2 data-en="Learn about Type 1 diabetes" data-ta="வகை 1 நீரிழிவு பற்றி கற்றுக்கொள்ளுங்கள்">Learn about Type 1 diabetes</h2>
+  <details>
+    <summary data-en="What is Type 1 diabetes?" data-ta="வகை 1 நீரிழிவு என்றால் என்ன?">What is Type 1 diabetes?</summary>
+    <p data-en="Type 1 diabetes is an autoimmune condition in which the body produces little or no insulin. It is not caused by eating too much sugar, and it is nobody's fault."
+       data-ta="வகை 1 நீரிழிவு என்பது உடல் மிகக் குறைவாக அல்லது இன்சுலின் உற்பத்தி செய்யாத ஒரு நிலை. அதிக சர்க்கரை சாப்பிட்டதால் இது ஏற்படுவதில்லை; இது யாருடைய தவறும் அல்ல.">
+      Type 1 diabetes is an autoimmune condition in which the body produces little or no insulin. It is not caused by eating too much sugar, and it is nobody's fault.
+    </p>
+  </details>
+  <details>
+    <summary data-en="Why is insulin needed?" data-ta="இன்சுலின் ஏன் தேவை?">Why is insulin needed?</summary>
+    <p data-en="Insulin helps glucose move from the blood into body cells. Use insulin only according to your prescribed care plan."
+       data-ta="இரத்தத்தில் உள்ள குளுக்கோஸ் உடல் செல்களுக்குச் செல்ல இன்சுலின் உதவுகிறது. பரிந்துரைக்கப்பட்ட மருத்துவத் திட்டத்தின்படி மட்டுமே இன்சுலின் பயன்படுத்துங்கள்.">
+      Insulin helps glucose move from the blood into body cells. Use insulin only according to your prescribed care plan.
+    </p>
+  </details>
+  <details>
+    <summary data-en="The 4–3–2–1–0 reminder" data-ta="4–3–2–1–0 நினைவூட்டல்">The 4–3–2–1–0 reminder</summary>
+    <p data-en="Use this as a personal reminder only if your care team has explained and approved what it means for you. It is not a universal insulin-dosing rule."
+       data-ta="இந்த எண்களின் பொருளை உங்கள் மருத்துவக் குழு விளக்கி ஒப்புதல் அளித்திருந்தால் மட்டுமே தனிப்பட்ட நினைவூட்டலாகப் பயன்படுத்துங்கள். இது அனைவருக்கும் பொருந்தும் இன்சுலின் அளவு விதி அல்ல.">
+      Use this as a personal reminder only if your care team has explained and approved what it means for you. It is not a universal insulin-dosing rule.
+    </p>
+  </details>
+  <details>
+    <summary data-en="When is emergency help needed?" data-ta="எப்போது அவசர உதவி தேவை?">When is emergency help needed?</summary>
+    <p data-en="If a person is unconscious, having a seizure, or cannot swallow safely, get emergency medical help immediately. Do not give food or drink by mouth."
+       data-ta="ஒருவர் மயக்கத்தில் இருந்தால், வலிப்பு ஏற்பட்டால் அல்லது பாதுகாப்பாக விழுங்க முடியாவிட்டால் உடனடியாக அவசர மருத்துவ உதவி பெறுங்கள். வாய்வழியாக உணவோ பானமோ கொடுக்க வேண்டாம்.">
+      If a person is unconscious, having a seizure, or cannot swallow safely, get emergency medical help immediately. Do not give food or drink by mouth.
+    </p>
+  </details>
+</section>
+
+<section class="card" id="travel">
+  <h2 data-en="Travel packing checklist" data-ta="பயணப் பொருட்கள் பட்டியல்">Travel packing checklist</h2>
+  <div id="travelList"></div>
+  <p class="muted" data-en="This is a reminder, not a guarantee of airline approval. Check the airline and destination rules."
+     data-ta="இது நினைவூட்டல் மட்டுமே; விமான அனுமதிக்கான உத்தரவாதம் அல்ல. விமான நிறுவனம் மற்றும் இலக்கு இட விதிகளைச் சரிபார்க்கவும்.">
+    This is a reminder, not a guarantee of airline approval. Check the airline and destination rules.
+  </p>
+  <button onclick="window.print()" data-en="Print checklist" data-ta="பட்டியலை அச்சிடு">Print checklist</button>
+  <button class="secondary" onclick="resetTravel()" data-en="Reset checklist" data-ta="பட்டியலை மீட்டமை">Reset checklist</button>
+</section>
+
+<section class="card" id="quiz">
+  <h2 data-en="T1D knowledge quiz" data-ta="T1D அறிவு வினாடி வினா">T1D knowledge quiz</h2>
+  <div id="quizArea"></div>
+  <button onclick="checkQuiz()" data-en="Check answers" data-ta="பதில்களைச் சரிபார்">Check answers</button>
+  <button class="secondary" onclick="buildQuiz()" data-en="Try again" data-ta="மீண்டும் முயற்சி">Try again</button>
+  <p id="quizResult" role="status"></p>
+</section>
+
+<section class="card" id="emergency">
+  <h2 data-en="Emergency information card" data-ta="அவசரத் தகவல் அட்டை">Emergency information card</h2>
+  <p data-en="These details are not saved. Fill this card in and print it if you choose."
+     data-ta="இந்த விவரங்கள் சேமிக்கப்படாது. விரும்பினால் நிரப்பி அச்சிடுங்கள்.">
+    These details are not saved. Fill this card in and print it if you choose.
+  </p>
+  <div class="notice">
+    <h3 data-en="I have Type 1 diabetes" data-ta="எனக்கு வகை 1 நீரிழிவு உள்ளது">I have Type 1 diabetes</h3>
+    <label for="personName" data-en="Name" data-ta="பெயர்">Name</label>
+    <input id="personName">
+    <label for="emergencyContact" data-en="Emergency contact" data-ta="அவசரத் தொடர்பு">Emergency contact</label>
+    <input id="emergencyContact">
+    <label for="medicalNotes" data-en="Important medical notes" data-ta="முக்கிய மருத்துவக் குறிப்புகள்">Important medical notes</label>
+    <textarea id="medicalNotes"></textarea>
+    <p data-en="If I am unconscious or cannot swallow safely, call emergency services. Do not give food or drink by mouth."
+       data-ta="நான் மயக்கத்தில் இருந்தால் அல்லது பாதுகாப்பாக விழுங்க முடியாவிட்டால் அவசர சேவையை அழைக்கவும். வாய்வழியாக உணவோ பானமோ கொடுக்க வேண்டாம்.">
+      If I am unconscious or cannot swallow safely, call emergency services. Do not give food or drink by mouth.
+    </p>
+  </div>
+  <button onclick="window.print()" data-en="Print emergency card" data-ta="அவசர அட்டையை அச்சிடு">Print emergency card</button>
+</section>
+
+<section class="card" id="settings">
+  <h2 data-en="Settings" data-ta="அமைப்புகள்">Settings</h2>
+  <p data-en="Only your language, theme, text size, glucose unit, email preference and WhatsApp number are saved. Daily entries, quiz answers, travel ticks and emergency-card details are not saved."
+     data-ta="மொழி, தீம், எழுத்தளவு, குளுக்கோஸ் அலகு, மின்னஞ்சல் விருப்பம், WhatsApp எண் மட்டுமே சேமிக்கப்படும். தினசரி பதிவுகள், வினாடி வினா பதில்கள், பயணக் குறிகள், அவசர அட்டை விவரங்கள் சேமிக்கப்படாது.">
+    Only your language, theme, text size, glucose unit, email preference and WhatsApp number are saved. Daily entries, quiz answers, travel ticks and emergency-card details are not saved.
+  </p>
+  <label for="emailPref" data-en="Email preference (optional)" data-ta="மின்னஞ்சல் விருப்பம் (விருப்பம்)">Email preference (optional)</label>
+  <input id="emailPref" type="email">
+  <button onclick="savePreferences()" data-en="Save preferences" data-ta="விருப்பங்களைச் சேமி">Save preferences</button>
+  <button class="secondary" onclick="clearPreferences()" data-en="Clear saved preferences" data-ta="சேமித்த விருப்பங்களை நீக்கு">Clear saved preferences</button>
+  <p id="settingsMessage" role="status"></p>
+</section>
+</main>
+
+<footer>
+  <p>T1D Buddy 💙</p>
+  <p class="muted" data-en="Educational support only. Follow your healthcare professional's advice."
+     data-ta="கல்வி உதவி மட்டுமே. உங்கள் மருத்துவ நிபுணரின் ஆலோசனையைப் பின்பற்றுங்கள்.">
+    Educational support only. Follow your healthcare professional's advice.
+  </p>
+</footer>
+
+<script>
+let language = "en";
+let installPrompt = null;
+const prefKey = "t1dbuddy_preferences_only";
+
+const travelItems = {
+  en: [
+    "Insulin and prescribed medicines",
+    "Glucose meter or monitoring supplies",
+    "Supplies recommended by my care team for low glucose",
+    "Charging cable or spare batteries",
+    "Prescription or clinician letter if needed",
+    "Medical ID and emergency contacts",
+    "Approved sharps container if needed",
+    "Suitable insulin storage bag if needed",
+    "Extra supplies for travel delays",
+    "Airline and destination rules checked"
+  ],
+  ta: [
+    "இன்சுலின் மற்றும் பரிந்துரைக்கப்பட்ட மருந்துகள்",
+    "குளுக்கோஸ் மீட்டர் அல்லது கண்காணிப்புப் பொருட்கள்",
+    "குறைந்த குளுக்கோஸுக்காக மருத்துவக் குழு பரிந்துரைத்த பொருட்கள்",
+    "சார்ஜிங் கேபிள் அல்லது கூடுதல் பேட்டரிகள்",
+    "தேவைப்பட்டால் மருந்துச் சீட்டு அல்லது மருத்துவர் கடிதம்",
+    "மருத்துவ அடையாள அட்டை மற்றும் அவசரத் தொடர்புகள்",
+    "தேவைப்பட்டால் அங்கீகரிக்கப்பட்ட ஊசி பாதுகாப்புப் பெட்டி",
+    "தேவைப்பட்டால் இன்சுலினுக்கான பொருத்தமான சேமிப்புப் பை",
+    "பயணத் தாமதத்திற்கான கூடுதல் பொருட்கள்",
+    "விமான நிறுவனம் மற்றும் இலக்கு இட விதிகள் சரிபார்க்கப்பட்டன"
+  ]
+};
+
+const questions = [
+  {
+    en: "What does insulin help the body do?",
+    ta: "இன்சுலின் உடலுக்கு எதில் உதவுகிறது?",
+    answers: [
+      ["Move glucose into cells", "குளுக்கோஸ் செல்களுக்குள் செல்ல உதவுகிறது"],
+      ["Replace water", "தண்ணீருக்கு மாற்றாகிறது"],
+      ["Cure every illness", "எல்லா நோய்களையும் குணப்படுத்துகிறது"]
+    ],
+    correct: 0
+  },
+  {
+    en: "Does eating sugar cause Type 1 diabetes?",
+    ta: "சர்க்கரை சாப்பிடுவதால் வகை 1 நீரிழிவு ஏற்படுமா?",
+    answers: [["Yes", "ஆம்"], ["No", "இல்லை"], ["Only at night", "இரவில் மட்டும்"]],
+    correct: 1
+  },
+  {
+    en: "Who should guide your insulin dose?",
+    ta: "இன்சுலின் அளவை யார் வழிநடத்த வேண்டும்?",
+    answers: [
+      ["A random website", "தெரியாத இணையதளம்"],
+      ["A friend guessing", "ஊகிக்கும் நண்பர்"],
+      ["Your diabetes care team and prescribed plan", "மருத்துவக் குழுவும் பரிந்துரைக்கப்பட்ட திட்டமும்"]
+    ],
+    correct: 2
+  },
+  {
+    en: "If someone is unconscious and cannot swallow safely, what should you do?",
+    ta: "ஒருவர் மயக்கத்தில் இருந்து பாதுகாப்பாக விழுங்க முடியாவிட்டால் என்ன செய்ய வேண்டும்?",
+    answers: [
+      ["Give food by mouth", "வாய்வழியாக உணவு கொடுக்கவும்"],
+      ["Get emergency help; give nothing by mouth", "அவசர உதவி பெறவும்; வாய்வழியாக எதையும் கொடுக்க வேண்டாம்"],
+      ["Leave them alone", "அவரைத் தனியாக விடவும்"]
+    ],
+    correct: 1
+  },
+  {
+    en: "Should you change insulin doses based on this website?",
+    ta: "இந்த இணையதளத்தை வைத்து இன்சுலின் அளவை மாற்றலாமா?",
+    answers: [
+      ["Yes", "ஆம்"],
+      ["If the quiz says so", "வினாடி வினா சொன்னால்"],
+      ["No; follow your prescribed plan", "இல்லை; பரிந்துரைக்கப்பட்ட திட்டத்தைப் பின்பற்றுங்கள்"]
+    ],
+    correct: 2
+  }
+];
+
+function toggleLanguage() {
+  const values = {};
+  [
+    "reportDate","unit","note","whatsapp","reportOutput",
+    "personName","emergencyContact","medicalNotes","emailPref"
+  ].forEach(id => values[id] = document.getElementById(id).value);
+
+  const travelChecks = [...document.querySelectorAll("#travelList input")]
+    .map(input => input.checked);
+
+  language = language === "en" ? "ta" : "en";
+  document.documentElement.lang = language;
+
+  document.querySelectorAll("[data-en][data-ta]").forEach(element => {
+    element.textContent = element.dataset[language];
+  });
+
+  buildDailySlots();
+  buildTravel();
+  buildQuiz();
+
+  Object.entries(values).forEach(([id,value]) => {
+    document.getElementById(id).value = value;
+  });
+
+  document.querySelectorAll("#travelList input").forEach((input,index) => {
+    input.checked = !!travelChecks[index];
+  });
+
+  document.getElementById("tagline").textContent =
+    language === "en"
+      ? "Learn. Prepare. Feel supported."
+      : "கற்றுக்கொள். தயாராகு. ஆதரவை உணர்.";
+}
+
+function toggleTheme() {
+  document.body.classList.toggle("dark");
+}
+
+function toggleText() {
+  document.body.style.fontSize =
+    document.body.style.fontSize === "19px" ? "16px" : "19px";
+}
+
+function installFor(device) {
+  if (installPrompt && ["android","windows","mac"].includes(device)) {
+    installPrompt.prompt();
+    installPrompt.userChoice.finally(() => installPrompt = null);
+    return;
+  }
+
+  const instructions = {
+    android:
+      "ANDROID INSTALL\n\n1. Open this HTTPS website in Chrome.\n2. Tap the ⋮ menu.\n3. Choose Install app or Add to Home screen.\n4. Confirm.",
+    iphone:
+      "IPHONE INSTALL\n\n1. Open this HTTPS website in Safari.\n2. Tap Share.\n3. Choose Add to Home Screen.\n4. Tap Add.",
+    windows:
+      "WINDOWS INSTALL\n\n1. Open this HTTPS website in Chrome or Edge.\n2. Look for the install icon near the address bar, or open the browser menu.\n3. Choose Install app if available.",
+    mac:
+      "MACBOOK INSTALL\n\nSafari on supported versions: File → Add to Dock.\n\nChrome: open the browser menu and choose Install app if available."
+  };
+
+  alert(instructions[device]);
+}
+
+window.addEventListener("beforeinstallprompt", event => {
+  event.preventDefault();
+  installPrompt = event;
+});
+
+function buildDailySlots() {
+  const labels = language === "en"
+    ? ["Morning","Noon","Night","Before sleeping"]
+    : ["காலை","மதியம்","இரவு","தூங்குவதற்கு முன்"];
+
+  document.getElementById("dailySlots").innerHTML =
+    labels.map((label,index) => {
+      const hasGlucose = index !== 3;
+      const id = ["morning","noon","night","bed"][index];
+
+      return `
+        <div class="install-card">
+          <h3>${label}</h3>
+          ${hasGlucose ? `
+            <label for="${id}Glucose">${language==="en"?"Glucose reading":"குளுக்கோஸ் அளவு"}</label>
+            <input id="${id}Glucose" type="number" step="any">
+            <label for="${id}Context">${language==="en"?"Reason/context if low or high":"குறைவு அல்லது அதிகம் என்றால் காரணம்/சூழல்"}</label>
+            <input id="${id}Context">
+          ` : ""}
+          <label for="${id}Insulin">${language==="en"?"Insulin record as prescribed":"பரிந்துரைத்தபடி இன்சுலின் பதிவு"}</label>
+          <input id="${id}Insulin">
+        </div>`;
+    }).join("");
+}
+
+function createReport() {
+  const lines = [
+    "T1D Buddy — " + (language==="en"?"Daily report":"தினசரி அறிக்கை"),
+    (language==="en"?"Date: ":"தேதி: ") + document.getElementById("reportDate").value,
+    "Unit: " + document.getElementById("unit").value
+  ];
+
+  const slots = [
+    ["morning",language==="en"?"Morning":"காலை",true],
+    ["noon",language==="en"?"Noon":"மதியம்",true],
+    ["night",language==="en"?"Night":"இரவு",true],
+    ["bed",language==="en"?"Before sleeping":"தூங்குவதற்கு முன்",false]
+  ];
+
+  const missingContext = [];
+
+  slots.forEach(([id,label,hasGlucose]) => {
+    lines.push("",label);
+
+    if (hasGlucose) {
+      const glucose = document.getElementById(id+"Glucose").value;
+      const context = document.getElementById(id+"Context").value.trim();
+
+      lines.push("Glucose: " + (glucose || "Not entered"));
+      lines.push("Context: " + (context || "Not entered"));
+
+      const number = Number(glucose);
+      const low = glucose !== "" &&
+        (document.getElementById("unit").value === "mg/dL"
+          ? number < 70 : number < 3.9);
+      const high = glucose !== "" &&
+        (document.getElementById("unit").value === "mg/dL"
+          ? number > 180 : number > 10);
+
+      if ((low || high) && !context) missingContext.push(label);
+    }
+
+    lines.push("Insulin record: " +
+      (document.getElementById(id+"Insulin").value || "Not entered"));
+  });
+
+  const note = document.getElementById("note").value.trim();
+  if (note) lines.push("", "Note: " + note);
+
+  lines.push(
+    "",
+    "Please review this information with my diabetes care team. " +
+    "This report does not recommend treatment or insulin dose changes."
+  );
+
+  document.getElementById("reportOutput").value = lines.join("\n");
+
+  if (missingContext.length) {
+    alert("Add a reason/context for these potentially low or high readings before sharing: " +
+      missingContext.join(", "));
+  }
+}
+
+function shareReport() {
+  createReport();
+
+  const number = document.getElementById("whatsapp").value
+    .replace(/[^\d]/g,"");
+  const report = document.getElementById("reportOutput").value;
+
+  const url = number
+    ? "https://wa.me/" + number + "?text=" + encodeURIComponent(report)
+    : "https://wa.me/?text=" + encodeURIComponent(report);
+
+  window.open(url,"_blank","noopener");
+}
+
+function buildTravel() {
+  document.getElementById("travelList").innerHTML =
+    travelItems[language].map((item,index) => `
+      <div class="check">
+        <label>
+          <input type="checkbox" id="travel${index}">
+          ${item}
+        </label>
+      </div>`).join("");
+}
+
+function resetTravel() {
+  document.querySelectorAll("#travelList input").forEach(input => {
+    input.checked = false;
+  });
+}
+
+function buildQuiz() {
+  document.getElementById("quizResult").textContent = "";
+
+  document.getElementById("quizArea").innerHTML =
+    questions.map((q,index) => `
+      <div class="install-card">
+        <p><strong>${index+1}. ${q[language]}</strong></p>
+        ${q.answers.map((answer,choice) => `
+          <label class="check" style="display:block">
+            <input type="radio" name="question${index}" value="${choice}">
+            ${answer[language==="en"?0:1]}
+          </label>`).join("")}
+      </div>`).join("");
+}
+
+function checkQuiz() {
+  let score = 0;
+
+  questions.forEach((q,index) => {
+    const selected = document.querySelector(
+      'input[name="question'+index+'"]:checked'
+    );
+    if (selected && Number(selected.value) === q.correct) score++;
+  });
+
+  document.getElementById("quizResult").textContent =
+    language === "en"
+      ? "Your score: " + score + " / " + questions.length
+      : "உங்கள் மதிப்பெண்: " + score + " / " + questions.length;
+}
+
+function savePreferences() {
+  const preferences = {
+    language,
+    theme: document.body.classList.contains("dark") ? "dark" : "light",
+    large: document.body.style.fontSize === "19px",
+    unit: document.getElementById("unit").value,
+    email: document.getElementById("emailPref").value,
+    whatsapp: document.getElementById("whatsapp").value
+  };
+
+  localStorage.setItem(prefKey, JSON.stringify(preferences));
+  document.getElementById("settingsMessage").textContent =
+    language==="en" ? "Preferences saved on this device." : "விருப்பங்கள் இந்தச் சாதனத்தில் சேமிக்கப்பட்டன.";
+}
+
+function clearPreferences() {
+  localStorage.removeItem(prefKey);
+  document.getElementById("settingsMessage").textContent =
+    language==="en" ? "Saved preferences cleared." : "சேமித்த விருப்பங்கள் நீக்கப்பட்டன.";
+}
+
+function loadPreferences() {
+  try {
+    const p = JSON.parse(localStorage.getItem(prefKey) || "{}");
+    language = p.language === "ta" ? "ta" : "en";
+    if (p.theme === "dark") document.body.classList.add("dark");
+    if (p.large) document.body.style.fontSize = "19px";
+    if (p.unit) document.getElementById("unit").value = p.unit;
+    if (p.email) document.getElementById("emailPref").value = p.email;
+    if (p.whatsapp) document.getElementById("whatsapp").value = p.whatsapp;
+  } catch (error) {}
+}
+
+document.getElementById("reportDate").value =
+  new Date().toISOString().slice(0,10);
+
+loadPreferences();
+buildDailySlots();
+buildTravel();
+buildQuiz();
+if (language === "ta") {
+  document.documentElement.lang = "ta";
+  document.querySelectorAll("[data-en][data-ta]").forEach(el => {
+    el.textContent = el.dataset.ta;
+  });
+}
+
+if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js").catch(console.error);
+  });
+}
+</script>
+</body>
+</html>
